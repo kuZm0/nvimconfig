@@ -1,40 +1,59 @@
-return{
+return {
 	{
-	  "williamboman/mason.nvim",
-	config = function()
+		"williamboman/mason.nvim",
+		config = function()
 			require("mason").setup()
-	end
+		end,
 	},
 	{
-		 "williamboman/mason-lspconfig.nvim",
+		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-			ensure_installed ={"asm_lsp","bashls","clangd","omnisharp","gopls","html","jsonls","java_language_server",
-				"tsserver","lua_ls","pyright","rust_analyzer","sqlls","biome","zls","jdtls"},
-			
-		})
-		end	
+				ensure_installed = {
+					"asm_lsp",
+					"clangd",
+					"csharp_ls",
+					"omnisharp",
+					"html",
+					"jsonls",
+					"java_language_server",
+					"tsserver",
+					"lua_ls",
+					"pyright",
+					"rust_analyzer",
+					"sqlls",
+					"biome",
+					"zls",
+					"bashls",
+					"gopls",
+					"omnisharp",
+				},
+			})
+		end,
 	},
+
 	{
-		 "neovim/nvim-lspconfig",
-		config = function() 
-		local lspconfig = require("lspconfig")
-		lspconfig.asm_lsp.setup({})
-		lspconfig.bashls.setup({})
-		lspconfig.clangd.setup({})
-		lspconfig.omnisharp.setup({})
-		lspconfig.gopls.setup({})
-		lspconfig.html.setup({})
-		lspconfig.jsonls.setup({})
-		lspconfig.java_language_server.setup({})
-		lspconfig.tsserver.setup({})
-		lspconfig.lua_ls.setup({})
-		lspconfig.pyright.setup({})
-		lspconfig.rust_analyzer.setup({})
-		lspconfig.sqlls.setup({})
-		lspconfig.biome.setup({})
-		lspconfig.zls.setup({})
-		lspconfig.jdtls.setup({})
-		end
-}
+		"neovim/nvim-lspconfig",
+		config = function()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local lspconfig = require("lspconfig")
+			lspconfig.asm_lsp.setup({ capabilities = capabilities })
+			lspconfig.bashls.setup({ capabilities = capabilities })
+			lspconfig.clangd.setup({ capabilities = capabilities })
+			lspconfig.gopls.setup({ capabilities = capabilities })
+			lspconfig.html.setup({ capabilities = capabilities })
+			lspconfig.jsonls.setup({ capabilities = capabilities })
+			lspconfig.java_language_server.setup({ capabilities = capabilities })
+			lspconfig.tsserver.setup({ capabilities = capabilities })
+			lspconfig.lua_ls.setup({ capabilities = capabilities })
+			lspconfig.pyright.setup({ capabilities = capabilities })
+			lspconfig.rust_analyzer.setup({ capabilities = capabilities })
+			lspconfig.sqlls.setup({ capabilities = capabilities })
+			lspconfig.biome.setup({ capabilities = capabilities })
+			lspconfig.zls.setup({ capabilities = capabilities })
+			lspconfig.ast_grep.setup({ capabilities = capabilities })
+			lspconfig.csharp_ls.setup({ capabilities = capabilities })
+			lspconfig.omnisharp.setup({ capabilities = capabilities })
+  end,
+	},
 }
